@@ -1,0 +1,33 @@
+## This is the code in the executable.
+
+import Cocoa
+
+// Create NSImage object
+guard let computerImage = NSImage(named: NSImage.computerName) else {
+    print("Error: Failed to load image")
+    exit(1)
+}
+
+// Convert NSImage to PNG data
+guard let tiffData = computerImage.tiffRepresentation else {
+    print("Error: Failed to convert image to TIFF")
+    exit(1)
+}
+guard let bitmapImageRep = NSBitmapImageRep(data: tiffData) else {
+    print("Error: Failed to create bitmap representation")
+    exit(1)
+}
+guard let pngData = bitmapImageRep.representation(using: .png, properties: [:]) else {
+    print("Error: Failed to convert image to PNG")
+    exit(1)
+}
+
+// Save PNG data to file
+let fileURL = URL(fileURLWithPath: "/var/tmp/computericon.png")
+do {
+    try pngData.write(to: fileURL, options: .atomic)
+    print("Image saved to \(fileURL.path)")
+} catch {
+    print("Error: Failed to save image to \(fileURL.path)")
+    exit(1)
+}
