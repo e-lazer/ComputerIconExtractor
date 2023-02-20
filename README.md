@@ -5,3 +5,7 @@ Since I dont, yet, know Swift this is just intended for personal use, but I thog
 For now it only seems to be working in macOS 13.
 
 Executable is placed in /var/tmp/
+
+Image is extracted to /var/tmp/computericon.png
+
+Postinstall script removes the executable
