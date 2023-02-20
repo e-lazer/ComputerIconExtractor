@@ -1,0 +1,8 @@
+# This is the postinstall script in the pkg
+
+#!/bin/sh
+## postinstall
+
+/var/tmp/ComputerIconExtractor
+
+rm -f /var/tmp/ComputerIconExtractor
